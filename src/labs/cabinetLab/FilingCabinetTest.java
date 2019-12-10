@@ -30,83 +30,75 @@ public class FilingCabinetTest
 		Student cupcake = new Student("Yummy", "Cupcake", 315386, 2.98);
 		Student zebra = new Student("Zebra", "Stripey", 121212, 3.333);
 
-		hcs3.add(mac);
-		hcs3.add(bert);
-		hcs3.add(cat);
-		hcs3.add(dog);
-		hcs3.add(cupcake);
-		System.out.println(hcs3);
-		hcs3.add(duck);
-		System.out.println(hcs3);
 
-//		hcs3.add(ernie);    // R - add to empty
-//		hcs3.add(bert);     // Y - add to empty
-//		hcs3.add(oscar);    // G - add to empty
-//		hcs3.add(apple);    // A - add to empty
-//		hcs3.add(zebra);    // Z - add to empty
-//		hcs3.add(cat);      // add in front of only
-//		hcs3.add(duck);     // add to end
-//		hcs3.add(bird);     // add in middle
-//		hcs3.add(mac);      // add to end
-//		hcs3.add(dog);      // add in front of several
-//		hcs3.add(cupcake);  // add to end of several
-//		System.out.println(hcs3);
-//		System.out.println();
-//
-//		// Show in reverse to verify previous links, too
-//		System.out.println(hcs3.reverseToString());
-//		System.out.println();
-//
-//		Student searchErnie = new Student("Red", "Ernie", 123, 2.5);
-//		if (hcs3.contains(searchErnie))
-//			System.out.println(searchErnie.getName() + " is in the filing cabinet.");
-//		else
-//			System.out.println(searchErnie.getName() + " is NOT in the filing cabinet.");
-//
-//		if (hcs3.contains(elmo))
-//			System.out.println(elmo.getName() + " is in the filing cabinet.");
-//		else
-//			System.out.println(elmo.getName() + " is NOT in the filing cabinet.");
-//
-//		if (hcs3.contains(mac))
-//			System.out.println(mac.getName() + " is in the filing cabinet.");
-//		else
-//			System.out.println(mac.getName() + " is NOT in the filing cabinet.");
-//		System.out.println();
-//
-//		// Removing non-existent node
-//		System.out.println("Removing " + elmo);
-//		hcs3.remove(elmo);
-//		System.out.println(hcs3);
-//		System.out.println();
-//
-//		// Removing only node
-//		System.out.println("Removing " + searchErnie);
-//		hcs3.remove(searchErnie);
-//		System.out.println(hcs3);
-//		System.out.println();
-//
-//		// Removing middle node
-//		System.out.println("Removing " + bird);
-//		hcs3.remove(bird);
-//		System.out.println(hcs3);
-//		System.out.println();
-//
-//		// Removing last node
-//		System.out.println("Removing " + cupcake);
-//		hcs3.remove(cupcake);
-//		System.out.println(hcs3);
-//		System.out.println();
-//
-//		// Removing first node
-//		System.out.println("Removing " + dog);
-//		hcs3.remove(dog);
-//		System.out.println(hcs3);
-//		System.out.println();
-//
-//		// Show in reverse to verify previous links, too
-//		System.out.println(hcs3.reverseToString());
-//		System.out.println();
+		hcs3.add(ernie);    // R - add to empty
+		hcs3.add(bert);     // Y - add to empty
+		hcs3.add(oscar);    // G - add to empty
+		hcs3.add(apple);    // A - add to empty
+		hcs3.add(zebra);    // Z - add to empty
+		hcs3.add(cat);      // add in front of only
+		hcs3.add(duck);     // add to end
+		hcs3.add(bird);     // add in middle
+		hcs3.add(mac);      // add to end
+		hcs3.add(dog);      // add in front of several
+		hcs3.add(cupcake);  // add to end of several
+		System.out.println(hcs3);
+		System.out.println();
+
+		// Show in reverse to verify previous links, too
+		System.out.println(hcs3.reverseToString());
+		System.out.println();
+
+		Student searchErnie = new Student("Red", "Ernie", 123, 2.5);
+		if (hcs3.contains(searchErnie))
+			System.out.println(searchErnie.getName() + " is in the filing cabinet.");
+		else
+			System.out.println(searchErnie.getName() + " is NOT in the filing cabinet.");
+
+		if (hcs3.contains(elmo))
+			System.out.println(elmo.getName() + " is in the filing cabinet.");
+		else
+			System.out.println(elmo.getName() + " is NOT in the filing cabinet.");
+
+		if (hcs3.contains(mac))
+			System.out.println(mac.getName() + " is in the filing cabinet.");
+		else
+			System.out.println(mac.getName() + " is NOT in the filing cabinet.");
+		System.out.println();
+
+		// Removing non-existent node
+		System.out.println("Removing " + elmo);
+		hcs3.remove(elmo);
+		System.out.println(hcs3);
+		System.out.println();
+
+		// Removing only node
+		System.out.println("Removing " + searchErnie);
+		hcs3.remove(searchErnie);
+		System.out.println(hcs3);
+		System.out.println();
+
+		// Removing middle node
+		System.out.println("Removing " + bird);
+		hcs3.remove(bird);
+		System.out.println(hcs3);
+		System.out.println();
+
+		// Removing last node
+		System.out.println("Removing " + cupcake);
+		hcs3.remove(cupcake);
+		System.out.println(hcs3);
+		System.out.println();
+
+		// Removing first node
+		System.out.println("Removing " + dog);
+		hcs3.remove(dog);
+		System.out.println(hcs3);
+		System.out.println();
+
+		// Show in reverse to verify previous links, too
+		System.out.println(hcs3.reverseToString());
+		System.out.println();
 	}
 }
 
