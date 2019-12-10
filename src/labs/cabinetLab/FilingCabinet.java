@@ -1,5 +1,16 @@
 package labs.cabinetLab;
 
+/**
+ * The FilingCabinet class contains method to effectively hold
+ * sorted data of Students through an array of Doubly-Linked lists.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 12/10/2019
+ */
+
 public class FilingCabinet
 {
 	/** Number of filing cabinets (one for each letter A-Z) */
@@ -22,7 +33,6 @@ public class FilingCabinet
 	{
 
 		DoubleNode<Student> temp = cabinet[getDrawer(stu)];
-
 		DoubleNode<Student> newNode = new DoubleNode<>(stu, null,null);;
 
 		if(temp == null)
@@ -79,10 +89,7 @@ public class FilingCabinet
 				current = nextNodeTemp;
 			} else
 				current = current.getNext();
-
-
 		}
-
 	}
 
 	/**
