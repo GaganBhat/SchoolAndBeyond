@@ -11,7 +11,7 @@ public class FilingCabinet
 	@SuppressWarnings("unchecked")
 	public FilingCabinet()
 	{
-		cabinet = new DoubleNode[26];
+		cabinet = new DoubleNode[NUM_CABINETS];
 	}
 
 	/**
@@ -34,7 +34,6 @@ public class FilingCabinet
 		} else {
 			while (temp.getNext() != null && temp.getNext().getValue().compareTo(stu) < 0)
 				temp = temp.getNext();
-
 			newNode.setNext(temp.getNext());
 			if(temp.getNext() != null)
 				newNode.getNext().setPrevious(newNode);
@@ -44,6 +43,11 @@ public class FilingCabinet
 
 	}
 
+	/**
+	 * Checks if the given Student param object is within the right drawer.
+	 * @param stu Student object to find
+	 * @return true if instance found, else false
+	 */
 	public boolean contains(Student stu)
 	{
 		DoubleNode<Student> frontTemp = cabinet[getDrawer(stu)];
@@ -55,8 +59,56 @@ public class FilingCabinet
 		return false;
 	}
 
+	/**
+	 * Removes the node that contains the student object specified
+	 * @param stu Student object to search for and remove in linked list.
+	 */
 	public void remove(Student stu)
 	{
+		DoubleNode<Student> current = cabinet[getDrawer(stu)];
+
+		if(current == null)
+			return;
+
+		DoubleNode<Student> nextNodeTemp;
+
+		while (current != null){
+			if(current.getValue().equals(stu)){
+				nextNodeTemp = current.getNext();
+				deleteNode(cabinet[getDrawer(stu)], current, stu);
+				current = nextNodeTemp;
+			} else
+				current = current.getNext();
+
+
+		}
+
+	}
+
+	/**
+	 * Deletes the node specified safely given the head and student object
+	 * @param head point to delete at from front
+	 * @param del node to delete containing the stu instance
+	 * @param stu student object to help find the right drawer.
+	 */
+	private void deleteNode(DoubleNode<Student> head, DoubleNode<Student> del, Student stu){
+
+		if (head == null || del == null) {
+			return;
+		}
+
+		if (head == del) {
+			cabinet[getDrawer(stu)] = del.getNext();
+		}
+
+		if (del.getNext() != null) {
+			del.getNext().setPrevious(del.getPrevious());
+		}
+
+		if (del.getPrevious() != null) {
+			del.getPrevious().setNext(del.getNext());
+		}
+
 	}
 
 	/** @return filing cabinet as a string with each student on a separate line
