@@ -11,21 +11,73 @@ public class FilingCabinet
 	@SuppressWarnings("unchecked")
 	public FilingCabinet() 
 	{
-	}	
+		cabinet = new DoubleNode[26];
+	}
 
+	/**
+	 * Inserts a student at the front of the proper drawer.
+	 * @param stu student to be added to the proper drawer.
+	 */
 	public void add(Student stu) 
-	{		
+	{
+		DoubleNode<Student> front = cabinet[getDrawer(stu)];
+		DoubleNode<Student> temp = front;
+
+		if(temp == null) {
+			cabinet[getDrawer(stu)] = new DoubleNode<>(stu, null, null);
+			;return;
+		}
+
+		while (stu.compareTo(temp.getValue()) > 0 && temp!= null){
+			if(temp.getNext() == null)
+				break;
+			temp = temp.getNext();
+		}
+		System.out.println("Stopped at = " + temp.getValue() + " Compare to = " + stu.compareTo(temp.getValue()) + " Inserting " + stu);
+
+
+		if(temp == front) {
+			if(stu.compareTo(front.getValue()) >= 0) {
+				front.setNext(new DoubleNode<>(stu, null, front));
+			}
+			else
+				cabinet[getDrawer(stu)] = new DoubleNode<>(stu, cabinet[getDrawer(stu)], null);
+		}
+		else if(temp.getNext() == null) {
+			if(stu.compareTo(temp.getValue()) >= 0) {
+				temp.setNext(new DoubleNode<>(stu, null, temp));
+			}
+			else {
+				DoubleNode<Student> insertNode = new DoubleNode<>(stu, temp, temp.getPrevious());
+				temp.getPrevious().setNext(insertNode);
+				temp.setPrevious(insertNode);
+			}
+
+
+		}	
+		else{
+			DoubleNode<Student> insertNode = new DoubleNode<>(stu, temp, temp.getPrevious());
+			temp.setPrevious(insertNode);
+			temp.getPrevious().getPrevious().setNext(insertNode);
+		}
+
 	}
 	
 	public boolean contains(Student stu) 
 	{
-		return true;
+		DoubleNode<Student> frontTemp = cabinet[getDrawer(stu)];
+		while (frontTemp != null){
+			if(frontTemp.getValue().equals(stu))
+				return true;
+			frontTemp = frontTemp.getNext();
+		}
+		return false;
 	}
 	
 	public void remove(Student stu) 
 	{
 	}
-	
+
 	/** @return filing cabinet as a string with each student on a separate line
 	 */
 	@Override
