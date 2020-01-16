@@ -34,6 +34,10 @@ public class Maze extends AbstractMaze
     private static final Color VISIT_COLOR = Color.MAGENTA;
     private static final Color EXIT_COLOR = Color.RED;
 
+    public Maze(){
+        super();
+    }
+
     /**
      * The Solve Maze method overrides the abstract method to solve the randomly generated
      * maze created by the populateMaze() method.
