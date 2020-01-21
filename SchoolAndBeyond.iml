@@ -16,5 +16,6 @@
     <orderEntry type="library" name="ejml-ddense-0.38" level="project" />
     <orderEntry type="library" name="ejml-simple-0.38" level="project" />
     <orderEntry type="library" name="wpilibj-java-2020.1.1-beta-3" level="project" />
+    <orderEntry type="library" name="CSP-gridworld" level="project" />
   </component>
 </module>
