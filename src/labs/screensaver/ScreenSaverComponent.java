@@ -65,7 +65,7 @@ public class ScreenSaverComponent extends JComponent
 
     }
 
-    /** Add a new circle to be drawn and then draw all circles.
+    /** Add a new circle to be drawn and then draw all circles and black background
      *  @param g the Graphics object for drawing in this component
      */
     @Override
