@@ -16,8 +16,8 @@ public class ScreenSaverComponent extends JComponent
 	private static final int MAX_CHANGE = 50;
 	private int maxCircles;
 	private int diameter;
-	private int chgX;
-	private int chgY;
+	private int dx;
+	private int dy;
 
 	private int prev_x;
 	private int prev_y;
@@ -31,8 +31,8 @@ public class ScreenSaverComponent extends JComponent
 	{
 		this.maxCircles = max;
 		this.diameter = diameter;
-		this.chgX = chgX;
-		this.chgY = chgY;
+		this.dx = chgX;
+		this.dy = chgY;
 		circleQueue = new LinkedList<>();
 		setRandomColor();
 	}
@@ -53,12 +53,16 @@ public class ScreenSaverComponent extends JComponent
 	
 	private void drawAll(Graphics2D gr)
 	{
+		if(circleQueue.size() > maxCircles)
+			circleQueue.poll();
+
 		for(Circle circle : circleQueue)
 			drawCenteredCircle(gr,circle.getUpperLeft().x, circle.getUpperLeft().y,
 					diameter, circle.getColor());
 	}
 
 	private void drawCenteredCircle(Graphics2D g, int xTransformed, int yTransformed, int r, Color color) {
+
 		xTransformed = xTransformed-(r/2);
 		yTransformed = yTransformed-(r/2);
 		prev_x = xTransformed;
@@ -70,6 +74,7 @@ public class ScreenSaverComponent extends JComponent
 	
 	private void addCircle() 
 	{
+		checkEdgeCollision();
 		if(initialStartup){
 			initialStartup = false;
 			circleQueue.add(
@@ -81,7 +86,7 @@ public class ScreenSaverComponent extends JComponent
 		} else {
 			circleQueue.add(
 					new Circle(
-							new Point(prev_x + chgX, prev_y + chgY),
+							new Point(prev_x + dx, prev_y + dy),
 							randomColor
 					)
 			);
@@ -95,6 +100,42 @@ public class ScreenSaverComponent extends JComponent
 		int green = randomGenerator.nextInt(256);
 		int blue = randomGenerator.nextInt(256);
 		randomColor = new Color(red,green,blue);
+	}
+
+	public void setRandomDeltas(){
+		Random randomGenerator = new Random();
+		if(dx > 0)
+			this.dx = -(randomGenerator.nextInt(55) - 5);
+		else
+
+
+		this.dy = (randomGenerator.nextInt(55) - 5);
+
+		this.dx *= -1;
+		this.dy *= -1;
+
+	}
+
+	private void checkEdgeCollision(){
+		boolean isTriggered = false;
+
+		if(prev_x + dx > getWidth() || prev_x + dx < -diameter/2) {
+			isTriggered = true;
+			dx *= -1;
+		}
+
+
+		if(prev_y + dy > getHeight() || prev_y + dy < -diameter/2) {
+			isTriggered = true;
+			dy *= -1;
+		}
+
+		System.out.println("Queue Size " + circleQueue.size());
+
+		if(isTriggered) {
+			setRandomColor();
+		}
+
 	}
 
 }
