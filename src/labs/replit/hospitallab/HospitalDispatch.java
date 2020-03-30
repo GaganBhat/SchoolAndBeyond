@@ -47,6 +47,21 @@ public class HospitalDispatch {
      *
      */
     public boolean dischargePatient(Patient patient) {
+
+        for (Entry<Hospital, TreeSet<Patient>> entry : areaHospitals.entrySet()) {
+            Hospital hospital = entry.getKey();
+            TreeSet<Patient> patients = entry.getValue();
+            if(patients.contains(patient)){
+                patients.remove(patient);
+                if(patient.needsBed())
+                    hospital.emptyBed();
+                if(patient.needsVentilator())
+                    hospital.returnVentilator();
+                return true;
+            }
+
+        }
+
         return false;
     }
 
