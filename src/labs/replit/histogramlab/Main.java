@@ -1,4 +1,4 @@
-package labs.replit;
+package labs.replit.histogramlab;
 
 public class Main {
 

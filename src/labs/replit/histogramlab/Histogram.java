@@ -1,4 +1,4 @@
-package labs.replit;
+package labs.replit.histogramlab;
 /**
  * The Histogram class contains the requested string and
  * has methods that create a histogram based on the frequency of
