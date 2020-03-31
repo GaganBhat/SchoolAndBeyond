@@ -1,7 +1,15 @@
 package labs.replit.hospitallab;
 /**
- *  Add your heading here
- * 
+ * The Main method tests the functionality of the hospital dispatcher
+ * class by creating hospitals and admitting patients. It also dispatches
+ * patients and prints out the results in each step to ensure it is working
+ * as expected.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 3/31/2020
  */
 
 import java.util.List;
