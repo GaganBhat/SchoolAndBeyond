@@ -104,12 +104,8 @@ public class HospitalDispatch {
 
         for (Entry<Hospital, TreeSet<Patient>> entry : areaHospitals.entrySet()) {
             Hospital hospital = entry.getKey();
-
             if(hasResources(pat, hospital))
                 return hospital;
-            else
-                break;
-
         }
 
         return null;
