@@ -60,9 +60,11 @@ public class StackBonus<E> extends Stack <E>
      */
     public boolean undo(int index)
     {
-        StackBonus<E> tmpStack = new StackBonus<>();
-        if(this.size() < index + 1)
+        if(index < 0)
             return false;
+
+        StackBonus<E> tmpStack = new StackBonus<>();
+
 
         int removalVal = (this.size()-1) - index;
         for (int i = 0; i < removalVal; i++)
