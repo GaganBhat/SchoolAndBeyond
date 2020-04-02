@@ -43,8 +43,11 @@ public class StackBonus<E> extends Stack <E>
         if(this.size() < index + 1)
             return false;
 
-        for (int i = 0; i < index; i++)
+        int removalVal = (this.size()-1) - index;
+        for (int i = 0; i < removalVal; i++)
             tmpStack.push(this.pop());
+
+        this.pop();
 
         while (!tmpStack.isEmpty())
             this.push(tmpStack.pop());

@@ -12,9 +12,8 @@ public class Main
         StackBonus<Integer> extraStack = new StackBonus<Integer>();
 
         // Write a loop to fill it with the lowest 15 positive odd numbers
-
-
-
+        for (int i = 1; i < 30; i += 2)
+            extraStack.push(i);
 
         // Display the stack
         System.out.println("filled:             " + extraStack);
@@ -26,12 +25,11 @@ public class Main
 
 
         // Display the stack
-        System.out.println("after multipop:     " + extraStack);
+//        System.out.println("after multipop:     " + extraStack);
 
 
         // Undo the 3rd item (remove it) - remember, it's not at index 3.
-
-
+        extraStack.undo(2);
 
         // Display the stack
         System.out.println("after undo index 2: " + extraStack);
