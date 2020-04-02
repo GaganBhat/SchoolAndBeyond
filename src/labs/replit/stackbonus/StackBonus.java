@@ -1,9 +1,18 @@
 package labs.replit.stackbonus;
-
 /**
- *  Your heading goes here
+ * The StackBonus class is a generic class that extends
+ * the functionality of a typical Stack with methods
+ * to help reverse the stack, undo previous actions
+ * and pop multiple items in one single method call.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 4/6/2020
  */
 
+import java.util.List;
 import java.util.Stack;
 
 public class StackBonus<E> extends Stack <E>
@@ -19,7 +28,11 @@ public class StackBonus<E> extends Stack <E>
      */
     public void multiPop(int numItems)
     {
+        if(numItems < 0)
+            return;
 
+        for(int i = 0; i < numItems; i++)
+            this.pop();
     }
 
 
@@ -29,7 +42,15 @@ public class StackBonus<E> extends Stack <E>
      * */
     public StackBonus<E> reverse()
     {
-        return null;
+        StackBonus<E> reversedStack = new StackBonus<>();
+        while (!this.isEmpty())
+            reversedStack.push(this.pop());
+
+        StackBonus<E> replica = (StackBonus<E>) reversedStack.clone();
+        while (replica.isEmpty())
+            this.push(replica.pop());
+
+        return reversedStack;
     }
 
     /** undo will remove one item from the Stack for a given index.
