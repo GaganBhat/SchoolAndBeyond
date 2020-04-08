@@ -126,19 +126,24 @@ public class SimpleRuntimeMachine {
 	private void copyOp(Scanner input) {
 		programStack.add("copy");
 
-
-		String referenceWord = input.next();
-		if(referenceWord.equalsIgnoreCase("add"))
-			addOp(input);
-		else{
-			String memLocation = referenceWord;
-			referenceWord = input.next();
-			if(referenceWord.equalsIgnoreCase("add"))
+		while (input.hasNext()){
+			String token = input.next();
+			if(token.equalsIgnoreCase("add"))
 				addOp(input);
-			else if (isVariable(referenceWord))
-				putVariable(memLocation, getVariable(referenceWord));
 			else
-				putVariable(memLocation, Integer.parseInt(referenceWord));
+				programStack.push(token);
+		}
+
+		while (!programStack.peek().equalsIgnoreCase("copy")){
+			String tokenToAdd = programStack.pop();
+			int valueToAddRam;
+			if(isVariable(tokenToAdd))
+				valueToAddRam = getVariable(tokenToAdd);
+			else
+				valueToAddRam = Integer.parseInt(tokenToAdd);
+
+			String memLocal = programStack.pop();
+			putVariable(memLocal, valueToAddRam);
 		}
 
 		programStack.pop();
