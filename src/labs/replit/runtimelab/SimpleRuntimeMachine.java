@@ -1,6 +1,18 @@
-package labs.replit.runtimelab;/*
-Your heading goes here...
-*/
+package labs.replit.runtimelab;
+/**
+ *  The SimpleRuntimeMachine class contains the methods
+ *  required to sequentially process the custom low level programming
+ *  language that was created by teachers in Plano. It contains methods
+ *  for printing, adding, copying and can be used in conjunction of one
+ *  another to create one line commands that can perform multiple
+ *  additions.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 4/9/2020
+ */
 
 import java.util.*;
 import java.io.*;
@@ -42,14 +54,14 @@ public class SimpleRuntimeMachine {
 		try {
 			fileReader = new Scanner(new File(fileName));
 		} catch (FileNotFoundException e) {
-          e.printStackTrace();
-        }
+			e.printStackTrace();
+		}
 
 		assert fileReader != null;
-		while (fileReader.hasNextLine()){
+		while (fileReader.hasNextLine()) {
 			Scanner commandReader = new Scanner(fileReader.nextLine());
 
-			switch (commandReader.next()){
+			switch (commandReader.next()) {
 				case "begin":
 					programStack.add("begin");
 					System.out.println("Starting the program...");
@@ -68,8 +80,6 @@ public class SimpleRuntimeMachine {
 			}
 
 		}
-
-		// complete the processCommands method...
 	}
 
 	/**
@@ -102,23 +112,6 @@ public class SimpleRuntimeMachine {
 		System.out.println(toPrint);
 
 		programStack.pop();
-	}
-
-	private boolean isVariable(String refWord){
-		if(refWord.charAt(0) == 'i' && Character.isDigit(refWord.charAt(1)))
-			return true;
-		return false;
-	}
-
-	private int getRAMValue(String memVar){
-		return ram[Integer.parseInt(
-				Character.toString(memVar.charAt(1)))];
-	}
-
-	private void putVariable(String memVar, int value){
-		ram[Integer.parseInt(
-				Character.toString(memVar.charAt(1)))]
-				= value;
 	}
 
 	/**
@@ -190,6 +183,38 @@ public class SimpleRuntimeMachine {
 		programStack.pop();
 		programStack.push(Integer.toString(sum));
 
+	}
+
+	/**
+	 * Checks if the given reference token is a reference to variable in RAM.
+	 * @param refWord token to check for reference
+	 * @return true if it is a RAM variable, false if it is not.
+	 */
+	private boolean isVariable(String refWord){
+		if(refWord.charAt(0) == 'i' && Character.isDigit(refWord.charAt(1)))
+			return true;
+		return false;
+	}
+
+	/**
+	 * Retrieves the given RAM reference from ram and returns the value
+	 * @param memVar reference to a RAM slot in ram array
+	 * @return the value of reference in RAM
+	 */
+	private int getRAMValue(String memVar){
+		return ram[Integer.parseInt(
+				Character.toString(memVar.charAt(1)))];
+	}
+
+	/**
+	 * Puts the given value into the correct reference RAM slot
+	 * @param memVar location in RAM to put value in
+	 * @param value value to put in given location in RAM
+	 */
+	private void putVariable(String memVar, int value){
+		ram[Integer.parseInt(
+				Character.toString(memVar.charAt(1)))]
+				= value;
 	}
 
 	/**
