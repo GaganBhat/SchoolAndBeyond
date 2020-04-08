@@ -81,8 +81,13 @@ public class SimpleRuntimeMachine {
 	private void print(Scanner input) {
 		programStack.add("print");
 
-		while (input.hasNext())
-			programStack.add(input.next());
+		while (input.hasNext()){
+			String token = input.next();
+			if(token.equalsIgnoreCase("add"))
+				addOp(input);
+			else
+				programStack.push(token);
+		}
 
 		StringBuilder toPrint = new StringBuilder();
 		while (!programStack.peek().equalsIgnoreCase("print")) {

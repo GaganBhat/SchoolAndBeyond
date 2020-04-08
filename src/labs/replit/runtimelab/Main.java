@@ -55,11 +55,11 @@ public class Main
   	SimpleRuntimeMachine run6 = new SimpleRuntimeMachine("ProgramAdd2.txt");
   	System.out.println ("\nState of RAM for ProgramAdd2.txt\n"+run6+"\n");
 
-  	  	  	  	  	/*
-
   	System.out.println ("Executing ProgramAdd3.txt");
   	SimpleRuntimeMachine run7 = new SimpleRuntimeMachine("ProgramAdd3.txt");
   	System.out.println ("\nState of RAM for ProgramAdd3.txt\n"+run7+"\n");
+
+  	  	  	  	  	  	/*
 
   	System.out.println ("Executing ProgramAdd4.txt");
   	SimpleRuntimeMachine run8 = new SimpleRuntimeMachine("ProgramAdd4.txt");
