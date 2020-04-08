@@ -1,4 +1,4 @@
-package labs.replit.stackbonus;
+package labs.replit.stackbonuslab;
 /**
  * The StackBonus class is a generic class that extends
  * the functionality of a typical Stack with methods
@@ -12,7 +12,6 @@ package labs.replit.stackbonus;
  * Due Date: 4/6/2020
  */
 
-import java.util.List;
 import java.util.Stack;
 
 public class StackBonus<E> extends Stack <E>

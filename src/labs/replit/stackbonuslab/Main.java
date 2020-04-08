@@ -1,4 +1,4 @@
-package labs.replit.stackbonus;
+package labs.replit.stackbonuslab;
 /**
  * The Main method tests the unique StackBonus methods
  * reverse, multipop and undo by creating an instance of a
