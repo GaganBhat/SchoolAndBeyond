@@ -40,12 +40,13 @@ public class Main
   	SimpleRuntimeMachine run3 = new SimpleRuntimeMachine("ProgramCopy1.txt");
   	System.out.println ("\nState of RAM for ProgramCopy1.txt\n"+run3+"\n");
 
-  	  	/*
 
   	System.out.println ("Executing ProgramCopy2.txt");
   	SimpleRuntimeMachine run4 = new SimpleRuntimeMachine("ProgramCopy2.txt");
   	System.out.println ("\nState of RAM for ProgramCopy2.txt\n"+run4+"\n");
-  	
+
+  	  	  	/*
+
   	System.out.println ("Executing ProgramAdd1.txt");
   	SimpleRuntimeMachine run5 = new SimpleRuntimeMachine("ProgramAdd1.txt");
   	System.out.println ("\nState of RAM for ProgramAdd1.txt\n"+run5+"\n");
