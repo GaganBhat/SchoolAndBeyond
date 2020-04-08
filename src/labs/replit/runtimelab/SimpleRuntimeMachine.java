@@ -53,13 +53,11 @@ public class SimpleRuntimeMachine {
 				case "begin":
 					programStack.add("begin");
 					System.out.println("Starting the program...");
-					programStack.pop();
 					break;
 				case "end":
-					programStack.add("end");
+					programStack.pop();
 					System.out.println("Stopping the program...");
 					System.out.println("Runtime Machine DONE!");
-					programStack.pop();
 					break;
 				case "print":
 					print(commandReader);
@@ -83,16 +81,20 @@ public class SimpleRuntimeMachine {
 	private void print(Scanner input) {
 		programStack.add("print");
 
-		String referenceWord = input.next();
-		if(referenceWord.equalsIgnoreCase("add"))
-			addOp(input);
-		else if(isVariable(referenceWord))
-			System.out.println(getVariable(referenceWord));
-		else
-			if(input.hasNext())
-				System.out.println(referenceWord + input.nextLine());
+		while (input.hasNext())
+			programStack.add(input.next());
+
+		StringBuilder toPrint = new StringBuilder();
+		while (!programStack.peek().equalsIgnoreCase("print")) {
+			String popped = programStack.pop();
+			if (isVariable(popped))
+				toPrint.insert(0, getVariable(popped) + " ");
 			else
-				System.out.println(referenceWord);
+				toPrint.insert(0, popped + " ");
+		}
+		toPrint = new StringBuilder(toPrint.toString().trim());
+
+		System.out.println(toPrint);
 
 		programStack.pop();
 	}
