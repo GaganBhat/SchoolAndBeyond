@@ -62,14 +62,10 @@ public class SimpleRuntimeMachine {
 					programStack.pop();
 					break;
 				case "print":
-					programStack.add("print");
 					print(commandReader);
-					programStack.pop();
 					break;
 				case "copy":
-					programStack.add("copy");
 					copyOp(commandReader);
-					programStack.pop();
 					break;
 			}
 
@@ -85,24 +81,37 @@ public class SimpleRuntimeMachine {
 	 * @param input the scanner object going through your current command
 	 */
 	private void print(Scanner input) {
+		programStack.add("print");
+
 		String referenceWord = input.next();
 		if(referenceWord.equalsIgnoreCase("add"))
 			addOp(input);
 		else if(isVariable(referenceWord))
-			System.out.println(ram[Integer.parseInt(
-					Character.toString(referenceWord.charAt(1)))]);
+			System.out.println(getVariable(referenceWord));
 		else
 			if(input.hasNext())
 				System.out.println(referenceWord + input.nextLine());
 			else
 				System.out.println(referenceWord);
 
+		programStack.pop();
 	}
 
 	private boolean isVariable(String refWord){
 		if(refWord.charAt(0) == 'i' && Character.isDigit(refWord.charAt(1)))
 			return true;
 		return false;
+	}
+
+	private int getVariable(String memVar){
+		return ram[Integer.parseInt(
+				Character.toString(memVar.charAt(1)))];
+	}
+
+	private void putVariable(String memVar, int value){
+		ram[Integer.parseInt(
+				Character.toString(memVar.charAt(1)))]
+				= value;
 	}
 
 	/**
@@ -113,7 +122,24 @@ public class SimpleRuntimeMachine {
 	 * @param input the scanner object going through your current command
 	 */
 	private void copyOp(Scanner input) {
-		// complete the copyOp method...
+		programStack.add("copy");
+
+
+		String referenceWord = input.next();
+		if(referenceWord.equalsIgnoreCase("add"))
+			addOp(input);
+		else{
+			String memLocation = referenceWord;
+			referenceWord = input.next();
+			if(referenceWord.equalsIgnoreCase("add"))
+				addOp(input);
+			else if (isVariable(referenceWord))
+				putVariable(memLocation, getVariable(referenceWord));
+			else
+				putVariable(memLocation, Integer.parseInt(referenceWord));
+		}
+
+		programStack.pop();
 	}
 
 	/**
