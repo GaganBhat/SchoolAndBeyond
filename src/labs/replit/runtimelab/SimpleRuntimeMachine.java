@@ -157,29 +157,33 @@ public class SimpleRuntimeMachine {
 	private void addOp(Scanner input) {
 		programStack.add("add");
 		String firstToken = input.next();
-		int firstValueToAdd;
-		if(firstToken.equalsIgnoreCase("add")) {
+		if(firstToken.equalsIgnoreCase("add"))
 			addOp(input);
-			firstValueToAdd = Integer.parseInt(programStack.pop());
-		} else if(isVariable(firstToken))
-			firstValueToAdd = getRAMValue(firstToken);
 		else
-			firstValueToAdd = Integer.parseInt(firstToken);
-
-		
+			programStack.push(firstToken);
 
 		String secondToken = input.next();
-		int secondValToAdd;
-		if(firstToken.equalsIgnoreCase("add")) {
+		if(secondToken.equalsIgnoreCase("add"))
 			addOp(input);
-			secondValToAdd = Integer.parseInt(programStack.pop());
-		} else if(isVariable(secondToken))
-			secondValToAdd = getRAMValue(firstToken);
 		else
-			secondValToAdd = Integer.parseInt(secondToken);
+			programStack.push(secondToken);
 
-		int sum = firstValueToAdd + secondValToAdd;
+		int val2;
+		if (isVariable(programStack.peek()))
+			val2 = getRAMValue(programStack.pop());
+		else
+			val2 = Integer.parseInt(programStack.pop());
 
+		int val1;
+		if (isVariable(programStack.peek()))
+			val1 = getRAMValue(programStack.pop());
+		else
+			val1 = Integer.parseInt(programStack.pop());
+
+		int sum = val1 + val2;
+
+		programStack.pop();
+		programStack.push(Integer.toString(sum));
 
 	}
 
