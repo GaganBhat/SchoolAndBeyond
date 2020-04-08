@@ -88,7 +88,7 @@ public class SimpleRuntimeMachine {
 		while (!programStack.peek().equalsIgnoreCase("print")) {
 			String popped = programStack.pop();
 			if (isVariable(popped))
-				toPrint.insert(0, getVariable(popped) + " ");
+				toPrint.insert(0, getRAMValue(popped) + " ");
 			else
 				toPrint.insert(0, popped + " ");
 		}
@@ -105,7 +105,7 @@ public class SimpleRuntimeMachine {
 		return false;
 	}
 
-	private int getVariable(String memVar){
+	private int getRAMValue(String memVar){
 		return ram[Integer.parseInt(
 				Character.toString(memVar.charAt(1)))];
 	}
@@ -138,7 +138,7 @@ public class SimpleRuntimeMachine {
 			String tokenToAdd = programStack.pop();
 			int valueToAddRam;
 			if(isVariable(tokenToAdd))
-				valueToAddRam = getVariable(tokenToAdd);
+				valueToAddRam = getRAMValue(tokenToAdd);
 			else
 				valueToAddRam = Integer.parseInt(tokenToAdd);
 
@@ -155,7 +155,32 @@ public class SimpleRuntimeMachine {
 	 * @param input the scanner object going through your current command
 	 */
 	private void addOp(Scanner input) {
-		// complete the addOp method...
+		programStack.add("add");
+		String firstToken = input.next();
+		int firstValueToAdd;
+		if(firstToken.equalsIgnoreCase("add")) {
+			addOp(input);
+			firstValueToAdd = Integer.parseInt(programStack.pop());
+		} else if(isVariable(firstToken))
+			firstValueToAdd = getRAMValue(firstToken);
+		else
+			firstValueToAdd = Integer.parseInt(firstToken);
+
+		
+
+		String secondToken = input.next();
+		int secondValToAdd;
+		if(firstToken.equalsIgnoreCase("add")) {
+			addOp(input);
+			secondValToAdd = Integer.parseInt(programStack.pop());
+		} else if(isVariable(secondToken))
+			secondValToAdd = getRAMValue(firstToken);
+		else
+			secondValToAdd = Integer.parseInt(secondToken);
+
+		int sum = firstValueToAdd + secondValToAdd;
+
+
 	}
 
 	/**
