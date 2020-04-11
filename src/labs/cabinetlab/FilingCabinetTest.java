@@ -1,4 +1,4 @@
-package labs.cabinetLab;
+package labs.cabinetlab;
 
 /**
  *  FilingCabinetTest tests the FilingCabinet class, adding students to

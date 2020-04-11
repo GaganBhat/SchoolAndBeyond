@@ -1,4 +1,4 @@
-package labs.cabinetLab;
+package labs.cabinetlab;
 
 /**
  * DoubleNode.java

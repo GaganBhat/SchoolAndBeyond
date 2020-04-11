@@ -1,4 +1,4 @@
-package labs.cabinetLab;
+package labs.cabinetlab;
 
 /**
  * The FilingCabinet class contains method to effectively hold

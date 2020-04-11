@@ -1,4 +1,4 @@
-package labs.cabinetLab;
+package labs.cabinetlab;
 
 /**
  *  The Student class is an immutable class that stores a student's name, ID, and GPA.
