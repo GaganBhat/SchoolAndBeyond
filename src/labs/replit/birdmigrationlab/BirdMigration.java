@@ -1,4 +1,4 @@
-/**
+package labs.replit.birdmigrationlab; /**
  *  Your heading goes here
  */
 
@@ -40,6 +40,18 @@ public class BirdMigration
    */
   public void addBird(Bird newBird)
   {
+      if(leader == null) {
+          leader = newBird;
+          leader.makeLeader();
+          echelon.add(leader);
+      }
+      else if (fallBackLeft){
+          echelon.addFirst(newBird);
+          fallBackLeft = false;
+      } else {
+          echelon.addLast(newBird);
+          fallBackLeft = true;
+      }
   }
   
   /**
@@ -48,7 +60,15 @@ public class BirdMigration
    */
   public Bird leaderFallBack()
   {
-    return null;
+      if(echelon.isEmpty())
+          return null;
+
+      Bird tempLeader = leader;
+      leader = echelon.removeFirst();
+      leader.makeLeader();
+      tempLeader.makeFollower();
+      echelon.addFirst(tempLeader);
+      return leader;
   }
   
   /**

@@ -1,4 +1,4 @@
-/* Main class used to test BirdMigration
+package labs.replit.birdmigrationlab;/* Main class used to test BirdMigration
  * Created by Plano ISD CS Teachers 
  * For use for Computer Science 3 Honors
  * Due Date: 04-16-2020

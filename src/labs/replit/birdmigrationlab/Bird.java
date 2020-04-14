@@ -1,3 +1,5 @@
+package labs.replit.birdmigrationlab;
+
 /**
  * The Bird class represents a bird that is part of a flock.
  * A bird has a type, strength level, and whether or not it is
