@@ -102,7 +102,39 @@ public class BirdMigration
    */
   public Bird removeWeakestBird()
   {
-    return null;
+      if(echelon.isEmpty())
+        return null;
+      Bird weakest = new Bird("test", Integer.MAX_VALUE);
+      Bird currentBird;
+      ListIterator<Bird> iter = echelon.listIterator();
+      while (iter.hasNext()){
+          currentBird = iter.next();
+          if(currentBird.getStrengthLevel() < weakest.getStrengthLevel())
+              weakest = currentBird;
+      }
+
+      if(weakest.equals(leader)){
+          Bird currBird;
+          ListIterator<Bird> iterator = echelon.listIterator();
+          while (iterator.hasNext()){
+              currBird = iterator.next();
+              if(currBird.equals(leader)) {
+                  iterator.previous();
+                  leader = iterator.previous();
+                  leader.makeLeader();
+                  iterator.next();
+                  iterator.next();
+                  iterator.remove();
+              }
+          }
+          leader.makeLeader();
+          weakest.makeFollower();
+      } else {
+          echelon.remove(weakest);
+      }
+
+
+      return weakest;
  }
   
   /** 
