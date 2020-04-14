@@ -11,6 +11,8 @@ public class BirdMigration
   
   /* boolean to track if the leader should fall back to left or right end */
   private boolean fallBackLeft;
+
+  private boolean addBirdLeft;
   
   /* track the leader */
   private Bird leader;
@@ -23,6 +25,7 @@ public class BirdMigration
     echelon = new LinkedList<>();
     fallBackLeft = true;
     leader = null;
+    addBirdLeft = true;
   }
   
   /**
@@ -45,12 +48,12 @@ public class BirdMigration
           leader.makeLeader();
           echelon.add(leader);
       }
-      else if (fallBackLeft){
+      else if (addBirdLeft){
           echelon.addFirst(newBird);
-          fallBackLeft = false;
+          addBirdLeft = false;
       } else {
           echelon.addLast(newBird);
-          fallBackLeft = true;
+          addBirdLeft = true;
       }
   }
   
@@ -63,11 +66,33 @@ public class BirdMigration
       if(echelon.isEmpty())
           return null;
 
-      Bird tempLeader = leader;
-      leader = echelon.removeFirst();
-      leader.makeLeader();
-      tempLeader.makeFollower();
-      echelon.addFirst(tempLeader);
+      Bird currentBird = null;
+      ListIterator<Bird> iter = echelon.listIterator();
+      while (iter.hasNext()){
+          currentBird = iter.next();
+          if(currentBird.equals(leader)){
+
+              iter.remove();
+              if(fallBackLeft) {
+                  leader = iter.previous();
+                  iter.next();
+              }
+              else {
+                  leader = iter.next();
+              }
+
+              leader.makeLeader();
+              break;
+          }
+      }
+
+      currentBird.makeFollower();
+      if(fallBackLeft)
+          echelon.addFirst(currentBird);
+      else
+          echelon.addLast(currentBird);
+
+      fallBackLeft = !fallBackLeft;
       return leader;
   }
   
