@@ -131,6 +131,9 @@ public class BirdMigration
           weakest.makeFollower();
       } else {
           echelon.remove(weakest);
+          leader.makeFollower();
+          leader = echelon.get(echelon.size()/2);
+          leader.makeLeader();
       }
 
 
@@ -145,6 +148,7 @@ public class BirdMigration
    */
   public BirdMigration splitFormation()
   {
+
     return null;
   }
   
