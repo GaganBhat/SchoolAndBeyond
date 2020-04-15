@@ -132,7 +132,15 @@ public class BirdMigration
       } else {
           echelon.remove(weakest);
           leader.makeFollower();
-          leader = echelon.get(echelon.size()/2);
+
+          int i = 0;
+          ListIterator<Bird> iterator = echelon.listIterator();
+          while (i <= echelon.size()/2) {
+              leader = iterator.next();
+              i++;
+          }
+
+//          leader = echelon.get(echelon.size()/2);
           leader.makeLeader();
       }
 
