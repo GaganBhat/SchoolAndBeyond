@@ -1,5 +1,15 @@
-package labs.replit.birdmigrationlab; /**
- *  Your heading goes here
+package labs.replit.birdmigrationlab;
+/**
+ * The BirdMigration class contains a flock of birds
+ * and manages the leader and it's followers in an
+ * echelon V formation. It can add new birds, remove weakest
+ * birds, change leaders, and split the group into half.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 4/16/2020
  */
 
 import java.util.*;
@@ -12,6 +22,7 @@ public class BirdMigration
   /* boolean to track if the leader should fall back to left or right end */
   private boolean fallBackLeft;
 
+  /* boolean to track if the bird should be added to left or right end */
   private boolean addBirdLeft;
   
   /* track the leader */
@@ -140,7 +151,6 @@ public class BirdMigration
               i++;
           }
 
-//          leader = echelon.get(echelon.size()/2);
           leader.makeLeader();
       }
 
@@ -159,8 +169,6 @@ public class BirdMigration
       BirdMigration migration = new BirdMigration();
       boolean alternate = true;
       int birdsToRemove = echelon.size() / 2;
-//      if(echelon.size() % 2 == 1)
-//          birdsToRemove++;
 
       for(int i = 0; i < birdsToRemove; i++){
           if(alternate)
