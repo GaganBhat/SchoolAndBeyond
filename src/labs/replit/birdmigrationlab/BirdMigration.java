@@ -148,8 +148,23 @@ public class BirdMigration
    */
   public BirdMigration splitFormation()
   {
+      BirdMigration migration = new BirdMigration();
+      boolean alternate = true;
+      int birdsToRemove = echelon.size() / 2;
+//      if(echelon.size() % 2 == 1)
+//          birdsToRemove++;
 
-    return null;
+      for(int i = 0; i < birdsToRemove; i++){
+          if(alternate)
+              migration.addBird(echelon.removeFirst());
+          else
+              migration.addBird(echelon.removeLast());
+
+          alternate = !alternate;
+
+      }
+
+    return migration;
   }
   
   /**
