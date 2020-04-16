@@ -118,7 +118,20 @@ public class MigrationList
    */
   public MigrationList splitFormation()
   {
-    return null;
+      fallBackLeft = true;
+      MigrationList newMigration = new MigrationList();
+      if(leftEnd == null)
+          return newMigration;
+      int i = numBirds / 2;
+      for (int k = 0; k < i; k++) {
+          if (fallBackLeft)
+              newMigration.addBird(removeLeftEnd());
+          else
+              newMigration.addBird(removeRightEnd());
+          fallBackLeft = !fallBackLeft;
+      }
+
+      return newMigration;
   }
   
   /**
@@ -222,7 +235,11 @@ public class MigrationList
    */
   private Bird removeLeftEnd()
   {
-    return null;
+      Bird leftBird = leftEnd.getValue();
+      leftEnd = leftEnd.getNext();
+      leftEnd.setPrevious(null);
+      numBirds--;
+      return leftBird;
   }
 
   /**
@@ -231,6 +248,10 @@ public class MigrationList
    */
   private Bird removeRightEnd()
   {
-    return null;
+      Bird rightBird = rightEnd.getValue();
+      rightEnd = rightEnd.getPrevious();
+      rightEnd.setNext(null);
+      numBirds--;
+      return rightBird;
   }
 }
