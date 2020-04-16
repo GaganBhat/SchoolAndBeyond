@@ -1,7 +1,17 @@
 package labs.replit.migrationlistlab;
 /**
- *  Your heading goes here
+ * The MigrationList class contains a flock of birds
+ * and manages the leader and it's followers in an
+ * echelon V formation. It can add new birds, remove weakest
+ * birds, change leaders, and split the group into half.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 4/20/2020
  */
+
 
 
 public class MigrationList
@@ -118,17 +128,17 @@ public class MigrationList
    */
   public MigrationList splitFormation()
   {
-      fallBackLeft = true;
+      boolean splitLeft = true;
       MigrationList newMigration = new MigrationList();
       if(leftEnd == null)
           return newMigration;
       int i = numBirds / 2;
       for (int k = 0; k < i; k++) {
-          if (fallBackLeft)
+          if (splitLeft)
               newMigration.addBird(removeLeftEnd());
           else
               newMigration.addBird(removeRightEnd());
-          fallBackLeft = !fallBackLeft;
+          splitLeft = !splitLeft;
       }
 
       return newMigration;
@@ -195,10 +205,14 @@ public class MigrationList
   private void addLeftEnd(Bird bird)
   {
       bird.makeFollower();
-      leftEnd = new Node<>(bird, leftEnd, null);
-      leftEnd.getNext().setPrevious(leftEnd);
-      numBirds++;
-      addBirdToLeft = !addBirdToLeft;
+      if(size()==0){
+          leftEnd = rightEnd = new Node<>(bird, null, null);
+      } else {
+          leftEnd = new Node<>(bird, leftEnd, null);
+          leftEnd.getNext().setPrevious(leftEnd);
+          numBirds++;
+          addBirdToLeft = !addBirdToLeft;
+      }
   }
   
   /**
@@ -208,10 +222,14 @@ public class MigrationList
   private void addRightEnd(Bird bird)
   {
       bird.makeFollower();
-      rightEnd = new Node<>(bird, null, rightEnd);
-      rightEnd.getPrevious().setNext(rightEnd);
-      numBirds++;
-      addBirdToLeft = !addBirdToLeft;
+      if(size()==0){
+          leftEnd = rightEnd = new Node<>(bird, null, null);
+      } else {
+          rightEnd = new Node<>(bird, null, rightEnd);
+          rightEnd.getPrevious().setNext(rightEnd);
+          numBirds++;
+          addBirdToLeft = !addBirdToLeft;
+      }
   }
   
   /** 
@@ -220,12 +238,10 @@ public class MigrationList
    */
   private void removeNode(Node<Bird> node)
   {
-      Node<Bird> tmpNode = leftEnd;
-      while (!tmpNode.equals(node))
-          tmpNode = tmpNode.getNext();
-
-      tmpNode.getPrevious().setNext(tmpNode.getNext());
-      tmpNode.getNext().setPrevious(tmpNode.getPrevious());
+      if(size() == 0)
+          return;
+      node.getPrevious().setNext(node.getNext());
+      node.getNext().setPrevious(node.getPrevious());
       numBirds--;
   }
 
@@ -235,10 +251,16 @@ public class MigrationList
    */
   private Bird removeLeftEnd()
   {
+      if(size() == 0)
+          return null;
       Bird leftBird = leftEnd.getValue();
-      leftEnd = leftEnd.getNext();
-      leftEnd.setPrevious(null);
-      numBirds--;
+      if(size() == 1) {
+          leftEnd = rightEnd = null;
+      } else {
+          leftEnd = leftEnd.getNext();
+          leftEnd.setPrevious(null);
+          numBirds--;
+      }
       return leftBird;
   }
 
@@ -248,10 +270,16 @@ public class MigrationList
    */
   private Bird removeRightEnd()
   {
+      if(size() == 0)
+          return null;
       Bird rightBird = rightEnd.getValue();
-      rightEnd = rightEnd.getPrevious();
-      rightEnd.setNext(null);
-      numBirds--;
+      if(size() == 1) {
+          leftEnd = rightEnd = null;
+      } else {
+          rightEnd = rightEnd.getPrevious();
+          rightEnd.setNext(null);
+          numBirds--;
+      }
       return rightBird;
   }
 }
