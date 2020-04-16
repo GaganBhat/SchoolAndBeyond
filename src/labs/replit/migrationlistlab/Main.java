@@ -1,16 +1,16 @@
 package labs.replit.migrationlistlab;/* Main class used to test MigrationList
- * Created by Plano ISD CS Teachers 
+ * Created by Plano ISD CS Teachers
  * For use for Computer Science 3 Honors
  * Due Date: 04-20-2020
  */
 
- 
+
 import java.io.*;
 import java.util.*;
 
 public class Main
 {
-  public static void main(String[] args) 
+  public static void main(String[] args)
   {
     // Test a single Bird
     Bird test = new Bird("Mallard1", 23);
@@ -18,10 +18,10 @@ public class Main
     test.makeLeader();
     System.out.println("test bird: " + test);
     System.out.println();
-    
+
     // Read in data from file
     List<Bird> flock = loadBirdData("flock.txt");
-    
+
     // Create a MigrationList object and add birds
     MigrationList firstFlock = new MigrationList();
     System.out.println("firstFlock: " + firstFlock);
@@ -32,7 +32,7 @@ public class Main
     System.out.println("firstFlock: " + firstFlock);
     System.out.println("in reverse: " + firstFlock.reverseString());
     System.out.println();
-    
+
     // Test the leader falling back
     System.out.println("***Testing leader falling back***");
     Bird newLeader = firstFlock.leaderFallBack();
@@ -54,7 +54,7 @@ public class Main
     System.out.println("After second fall back: " + firstFlock);
     System.out.println("in reverse: " + firstFlock.reverseString());
     System.out.println();
-    
+
     // Test with empty list
     MigrationList emptyFlock = new MigrationList();
     newLeader = emptyFlock.leaderFallBack();
@@ -93,7 +93,7 @@ public class Main
     else
       System.out.println("ERROR: weakest of empty list not null; is " + weakest);
     System.out.println();
-    
+
     // Test splitting an empty flock
     MigrationList splitFlock = emptyFlock.splitFormation();
     if (splitFlock != null)
@@ -106,7 +106,7 @@ public class Main
     System.out.println("After split, emptyFlock: " + emptyFlock);
     System.out.println("After split, splitFlock: " + splitFlock);
     System.out.println();
-   
+
     // Test splitting a large flock (even size)
     int expectedSize = firstFlock.size() / 2;
     splitFlock = firstFlock.splitFormation();
@@ -143,7 +143,7 @@ public class Main
       System.out.println("ERROR: splitFormation returning null");
     System.out.println();
   }
-  
+
   /**
    * Generates and returns a list of birds from the given file
    * @param fileName the name of the text file with birds

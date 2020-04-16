@@ -50,6 +50,7 @@ public class MigrationList
       if(leaderNode == null) {
           newBird.makeLeader();
           leftEnd = rightEnd = leaderNode = new Node<>(newBird, null, null);
+          numBirds++;
       } else if (addBirdToLeft)
           addLeftEnd(newBird);
       else
@@ -62,8 +63,10 @@ public class MigrationList
    */
   public Bird leaderFallBack()
   {
+      if(leaderNode == null)
+          return null;
       removeNode(leaderNode);
-      leaderNode.getValue().makeLeader();
+      leaderNode.getValue().makeFollower();
       if(fallBackLeft)
           addLeftEnd(leaderNode.getValue());
       else
@@ -83,7 +86,28 @@ public class MigrationList
    */
   public Bird removeWeakestBird()
   {
-    return null;
+      if(leaderNode == null)
+          return null;
+
+      Node<Bird> weakestNode = leftEnd;
+      Node<Bird> tmpNode = leftEnd;
+      while (!(tmpNode.getNext() == null)){
+          if(tmpNode.getValue().getStrengthLevel()
+                  < weakestNode.getValue().getStrengthLevel())
+              weakestNode = tmpNode;
+          tmpNode = tmpNode.getNext();
+      }
+
+      removeNode(weakestNode);
+
+      leaderNode.getValue().makeFollower();
+      leaderNode = locateMiddleNode();
+      leaderNode.getValue().makeLeader();
+
+
+      Bird weakestBird = weakestNode.getValue();
+      weakestBird.makeFollower();
+      return weakestBird;
   }
   
   /** 
@@ -189,6 +213,7 @@ public class MigrationList
 
       tmpNode.getPrevious().setNext(tmpNode.getNext());
       tmpNode.getNext().setPrevious(tmpNode.getPrevious());
+      numBirds--;
   }
 
   /**
