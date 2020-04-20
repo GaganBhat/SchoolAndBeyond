@@ -33,7 +33,7 @@ public class Main
   {
     // Load test data and create HospitalDispatch object
     areaHospitals = loadHospitalData("hospitals.txt");
-    patientList = loadPatientData("patients.txt");
+    patientList = loadPatientData("patientshospitallab.txt");
     dispatcher = new HospitalDispatch();
     
     // Begin testing if all 3 objects created successfully

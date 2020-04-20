@@ -75,6 +75,7 @@ public class MigrationList
   {
       if(leaderNode == null)
           return null;
+
       removeNode(leaderNode);
       leaderNode.getValue().makeFollower();
       if(fallBackLeft)
@@ -238,11 +239,18 @@ public class MigrationList
    */
   private void removeNode(Node<Bird> node)
   {
-      if(size() == 0)
-          return;
-      node.getPrevious().setNext(node.getNext());
-      node.getNext().setPrevious(node.getPrevious());
-      numBirds--;
+      if(size() == 0) { }
+      else if (size() == 1)
+          leftEnd = rightEnd = null;
+      else if (node.equals(leftEnd))
+          removeLeftEnd();
+      else if (node.equals(rightEnd))
+          removeRightEnd();
+      else {
+          node.getPrevious().setNext(node.getNext());
+          node.getNext().setPrevious(node.getPrevious());
+          numBirds--;
+      }
   }
 
   /**
@@ -256,11 +264,12 @@ public class MigrationList
       Bird leftBird = leftEnd.getValue();
       if(size() == 1) {
           leftEnd = rightEnd = null;
+          numBirds--;
       } else {
           leftEnd = leftEnd.getNext();
           leftEnd.setPrevious(null);
-          numBirds--;
       }
+      numBirds--;
       return leftBird;
   }
 
@@ -278,8 +287,8 @@ public class MigrationList
       } else {
           rightEnd = rightEnd.getPrevious();
           rightEnd.setNext(null);
-          numBirds--;
       }
+      numBirds--;
       return rightBird;
   }
 }
