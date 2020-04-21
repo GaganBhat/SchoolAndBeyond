@@ -1,8 +1,17 @@
 package labs.replit.patienttriagelab;
 /**
- * Your heading goes here...
- * Remember your javadocs.
+ * This method returns the list of patients on the triage list
+ * in the order of priority.
+ *
+ * POST CONDITION:
+ * All patients in patients list at the start of the method are still in
+ * the patientList AND the heap still maintains the order.
+ * Note: While the heap order is maintained, the locations of patients in the
+ * heap might change after this method is completed.
+ *
+ * @return the list of patients on the triage list in the order of priority.
  */
+
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -46,8 +55,9 @@ public class PatientTriage {
 	 */
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for(Patient patient : patientList)
-			sb.append(patient).append("\n");
+		PriorityQueue<Patient> copy = new PriorityQueue<>(patientList);
+		while (!copy.isEmpty())
+			sb.append(copy.poll()).append("\n");
 
 		return sb.toString();
 	}
