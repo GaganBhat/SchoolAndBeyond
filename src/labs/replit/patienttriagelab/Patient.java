@@ -1,11 +1,3 @@
-package labs.replit.patienttriagelab; /**
- * Your heading goes here...
- */
-
-import java.util.HashMap;
-import java.util.Set;
-import java.util.TreeSet;
-
 /**
  * The Patient class repsents an individual patient at a hospital,
  * maintaining whether or not the patient needs a bed, ventilator,
@@ -14,6 +6,13 @@ import java.util.TreeSet;
  * @author Jonathan Yee, Tracy Ishman, Ann Horton
  * Date: 4/19/2020
  */
+
+package labs.replit.patienttriagelab;
+
+
+import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeSet;
 public class Patient implements Comparable<Patient> {
 	/**
 	 * name of the Patient, resource needs, and closest hospital

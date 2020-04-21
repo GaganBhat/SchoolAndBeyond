@@ -1,7 +1,16 @@
-package labs.replit.patienttriagelab; /**
- * Your heading goes here...
+/**
+ * The Main class tests the functionality
+ * of the PatientTriage method and it's ability
+ * to order and process patients based on priority.
+ *
+ * @author Gagan Bhat
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 4/20/2020
  */
 
+package labs.replit.patienttriagelab;
 import java.util.*;
 import java.io.*;
 
