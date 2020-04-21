@@ -114,40 +114,40 @@ public class Patient implements Comparable<Patient> {
 	@Override
 	public int compareTo(Patient other) {
 		if(this.needsSurgery() && !other.needsSurgery())
-			return 1;
-		else if(!this.needsSurgery() && other.needsSurgery())
 			return -1;
+		else if(!this.needsSurgery() && other.needsSurgery())
+			return 1;
 		else if(this.needsSurgery() && other.needsSurgery())
 			return this.getName().compareTo(other.getName());
 
 		if(this.needsVentilator() && !other.needsVentilator())
-			return 1;
-		else if(!this.needsVentilator() && other.needsVentilator())
 			return -1;
+		else if(!this.needsVentilator() && other.needsVentilator())
+			return 1;
 
 		if(this.needsVentilator() && other.needsVentilator())
 			if(this.getAge() > 50 && other.getAge() > 50)
 				return this.getName().compareTo(other.getName());
 			else if (this.getAge() > 50 && !(other.getAge() > 50))
-				return 1;
-			else if (!(this.getAge() > 50) && other.getAge() > 50)
 				return -1;
+			else if (!(this.getAge() > 50) && other.getAge() > 50)
+				return 1;
 
 		if(this.needsVentilator() && other.needsVentilator())
 			if(this.getAge() < 12 && other.getAge() < 12)
 				return this.getName().compareTo(other.getName());
 			else if (this.getAge() < 12 && !(other.getAge() < 12))
-				return 1;
-			else if (!(this.getAge() < 12) && other.getAge() < 12)
 				return -1;
+			else if (!(this.getAge() < 12) && other.getAge() < 12)
+				return 1;
 
 		if(this.needsVentilator() && other.needsVentilator())
 			return this.getName().compareTo(other.getName());
 
 		if(this.needsBed() && !other.needsBed())
-			return 1;
-		else if(!this.needsBed() && other.needsBed())
 			return -1;
+		else if(!this.needsBed() && other.needsBed())
+			return 1;
 
 
 		return this.getName().compareTo(other.getName());
