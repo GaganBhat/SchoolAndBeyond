@@ -1,18 +1,18 @@
 /**
- * The Patient class repsents an individual patient at a hospital,
+ * The Patient class represents an individual patient at a hospital,
  * maintaining whether or not the patient needs a bed, ventilator,
  * or surgery.  A Patient has an name and age.
  *
- * @author Jonathan Yee, Tracy Ishman, Ann Horton
- * Date: 4/19/2020
+ * @author Gagan Bhat, Jonathan Yee, Tracy Ishman, Ann Horton
+ * Collaborators: None
+ * Teacher Name: Mrs. Ishman
+ * Period: 3
+ * Due Date: 4/20/2020
  */
 
 package labs.replit.patienttriagelab;
 
 
-import java.util.HashMap;
-import java.util.Set;
-import java.util.TreeSet;
 public class Patient implements Comparable<Patient> {
 	/**
 	 * name of the Patient, resource needs, and closest hospital

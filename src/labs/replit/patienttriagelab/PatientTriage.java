@@ -1,7 +1,9 @@
 /**
- * The PatientTriage class prioritizes and processes
- * the patients based on the comparator implemented
- * in the Patient class.
+ * The PatientTriage class represents a queue of patients that are sorted
+ * by priority in which help is needed and give. It prioritizes and processes
+ * the patients based on the comparator implemented in the Patient class.
+ * It contains methods to add and process patients along with a toString
+ * that presents the patients in the priority order. 
  *
  * @author Gagan Bhat
  * Collaborators: None

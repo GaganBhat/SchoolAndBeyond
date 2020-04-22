@@ -42,7 +42,9 @@ public class TrajectoryGeneration {
                 // Pass config
                 config
         );
-//
+
+        System.out.println(quinticTrajectory.getStates());
+
         Trajectory quinticTrajectory2 = TrajectoryGenerator.generateTrajectory(
                 // Start at the origin facing the +X direction
                 // Pass through these two interior waypoints, making an 's' curve path
