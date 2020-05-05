@@ -6,13 +6,16 @@ public class Review {
 	private String productName;
 	private String title;
 	private String content;
+	private String uniqueUsername;
 	private int rating;
 
-	public Review(String brand, String productName, String title, String content, int rating){
+
+	public Review(String brand, String productName, String title, String content, String uniqueUsername, int rating){
 		this.brand = brand;
 		this.productName = productName;
 		this.title = title;
 		this.content = content;
+		this.uniqueUsername = uniqueUsername;
 		this.rating = rating;
 	}
 
@@ -54,5 +57,13 @@ public class Review {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public String getUniqueUsername() {
+		return uniqueUsername;
+	}
+
+	public void setUniqueUsername(String uniqueUsername) {
+		this.uniqueUsername = uniqueUsername;
 	}
 }
