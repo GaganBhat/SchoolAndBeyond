@@ -37,16 +37,16 @@ public class ReviewManager {
 		while (s.hasNextLine()) {
 			String[] reviewData = s.nextLine().split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 			if(reviewData.length != 6) {
-				List<String> tempList = new ArrayList<>(List.of(reviewData));
+				List<String> tempList = new ArrayList<>(Arrays.asList(reviewData));
 				tempList.add("5");
 				reviewData = tempList.toArray(reviewData);
 			}
 			addReview(new Review(reviewData));
 		}
 		System.out.println("DONE!");
+		System.out.println("Processing Time was " + (System.nanoTime() - startTime) / 1e9 + " seconds.");
 		System.out.println("---------------------");
-
-		System.out.println("** Processing Time was " + (System.nanoTime() - startTime) / 1e9 + " seconds **");
+		System.out.println();
 	}
 
 	public void addReview(Review review){
