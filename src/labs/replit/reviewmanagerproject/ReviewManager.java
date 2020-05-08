@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import static java.lang.Double.NaN;
+
 public class ReviewManager {
 
 	HashMap<String, HashSet<Review>> reviewMap;
@@ -18,6 +20,8 @@ public class ReviewManager {
 	}
 
 	public void loadData(String dataPath){
+		long startTime = System.nanoTime();
+
 		System.out.println("---------------------");
 		System.out.println("INDEXING REVIEW DATA");
 		Scanner s = null;
@@ -41,6 +45,8 @@ public class ReviewManager {
 		}
 		System.out.println("DONE!");
 		System.out.println("---------------------");
+
+		System.out.println("** Processing Time was " + (System.nanoTime() - startTime) / 1e9 + " seconds **");
 	}
 
 	public void addReview(Review review){
@@ -64,6 +70,17 @@ public class ReviewManager {
 			total += reviewMap.get(key).size();
 
 		return total;
+	}
+
+	public double getAverageRating(String brand){
+		if(!reviewMap.containsKey(brand)) {
+			return NaN;
+		}
+		double total = 0;
+		for(Review review : reviewMap.get(brand))
+			total += review.getRating();
+
+		return total / reviewMap.get(brand).size();
 	}
 
 	@Override
