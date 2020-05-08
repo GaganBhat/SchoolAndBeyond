@@ -83,6 +83,12 @@ public class ReviewManager {
 		return total / reviewMap.get(brand).size();
 	}
 
+	public void removeReview(String uniqueUsername){
+		for(String key : reviewMap.keySet())
+			reviewMap.get(key).removeIf(review ->
+					review.getUniqueUsername().equalsIgnoreCase(uniqueUsername));
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewManager{" +
