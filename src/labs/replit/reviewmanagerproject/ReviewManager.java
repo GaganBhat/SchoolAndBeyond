@@ -18,6 +18,8 @@ public class ReviewManager {
 	}
 
 	public void loadData(String dataPath){
+		System.out.println("---------------------");
+		System.out.println("INDEXING REVIEW DATA");
 		Scanner s = null;
 		try {
 			s = new Scanner(new File(dataPath));
@@ -37,6 +39,8 @@ public class ReviewManager {
 			}
 			addReview(new Review(reviewData));
 		}
+		System.out.println("DONE!");
+		System.out.println("---------------------");
 	}
 
 	public void addReview(Review review){
@@ -52,6 +56,14 @@ public class ReviewManager {
 
 	public int getNumBrands(){
 		return reviewMap.keySet().size();
+	}
+
+	public int getTotalReviews(){
+		int total = 0;
+		for(String key : reviewMap.keySet())
+			total += reviewMap.get(key).size();
+
+		return total;
 	}
 
 	@Override
