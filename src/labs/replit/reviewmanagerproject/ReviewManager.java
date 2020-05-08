@@ -31,10 +31,9 @@ public class ReviewManager {
 		assert s != null;
 		s.nextLine();
 
-		while (s.hasNextLine()){
-			String[] reviewData = s.nextLine().split(",");
-			System.out.println(Arrays.toString(reviewData));
-		}
+		String[] reviewData = s.nextLine().split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+		System.out.println(Arrays.toString(reviewData));
+
 
 	}
 

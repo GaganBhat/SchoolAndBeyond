@@ -19,6 +19,17 @@ public class Review {
 		this.rating = rating;
 	}
 
+	public Review(String[] compressedReviewData){
+		this(
+				compressedReviewData[0],
+				compressedReviewData[1],
+				compressedReviewData[2],
+				compressedReviewData[3],
+				compressedReviewData[4],
+				Integer.parseInt(compressedReviewData[5])
+		);
+	}
+
 	public String getBrand() {
 		return brand;
 	}
@@ -65,5 +76,17 @@ public class Review {
 
 	public void setUniqueUsername(String uniqueUsername) {
 		this.uniqueUsername = uniqueUsername;
+	}
+
+	@Override
+	public String toString() {
+		return "Review{" +
+				"brand='" + brand + '\'' +
+				", productName='" + productName + '\'' +
+				", title='" + title + '\'' +
+				", content='" + content + '\'' +
+				", uniqueUsername='" + uniqueUsername + '\'' +
+				", rating=" + rating +
+				'}';
 	}
 }
