@@ -28,6 +28,11 @@ public class Main {
 		System.out.println("Number of Reviews AFTER removing a review - " + reviewManager.getTotalReviews());
 		System.out.println("--------------------------------");
 
+		System.out.println();
+
+		System.out.println("Retrieving a review based on username CCSmooth");
+		System.out.println(reviewManager.getReview("CCSmooth"));
+
 	}
 
 }

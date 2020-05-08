@@ -86,7 +86,15 @@ public class ReviewManager {
 	public void removeReview(String uniqueUsername){
 		for(String key : reviewMap.keySet())
 			reviewMap.get(key).removeIf(review ->
-					review.getUniqueUsername().equalsIgnoreCase(uniqueUsername));
+					review.getUniqueUsername().equals(uniqueUsername));
+	}
+
+	public Review getReview(String uniqueUsername) {
+		for(String key : reviewMap.keySet())
+			for(Review review : reviewMap.get(key))
+				if(review.getUniqueUsername().equals(uniqueUsername))
+					return review;
+		return null;
 	}
 
 	@Override
@@ -95,4 +103,6 @@ public class ReviewManager {
 				"reviewMap=" + reviewMap +
 				'}';
 	}
+
+
 }
