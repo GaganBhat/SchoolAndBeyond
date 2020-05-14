@@ -47,7 +47,7 @@ public class Review {
 	 * information that is passed on in sequence to the main constructor
 	 * @param compressedReviewData array of all data required to make a review
 	 */
-	public Review(String[] compressedReviewData){
+	public Review(String... compressedReviewData){
 		this(
 				compressedReviewData[0],
 				compressedReviewData[1],
