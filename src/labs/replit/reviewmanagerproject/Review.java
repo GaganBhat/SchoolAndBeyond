@@ -1,5 +1,7 @@
 package labs.replit.reviewmanagerproject;
 
+import java.util.Objects;
+
 public class Review {
 
 	private String brand;
@@ -76,6 +78,25 @@ public class Review {
 
 	public void setUniqueUsername(String uniqueUsername) {
 		this.uniqueUsername = uniqueUsername;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Review review = (Review) o;
+		return getRating() == review.getRating() &&
+				Objects.equals(getBrand(), review.getBrand()) &&
+				Objects.equals(getProductName(), review.getProductName()) &&
+				Objects.equals(getTitle(), review.getTitle()) &&
+				Objects.equals(getContent(), review.getContent()) &&
+				Objects.equals(getUniqueUsername(), review.getUniqueUsername());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getBrand(), getProductName(), getTitle(),
+				getContent(), getUniqueUsername(), getRating());
 	}
 
 	@Override
