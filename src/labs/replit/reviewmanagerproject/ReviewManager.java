@@ -3,7 +3,6 @@ package labs.replit.reviewmanagerproject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-
 import static java.lang.Double.NaN;
 
 public class ReviewManager {
